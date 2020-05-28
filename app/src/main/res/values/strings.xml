@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">loco</string>
+    <string name="ok">this is %1$s on top of %2$d</string>
+</resources>
