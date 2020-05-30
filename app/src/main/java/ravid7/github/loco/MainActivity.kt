@@ -1,9 +1,13 @@
 package ravid7.github.loco
 
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import android.widget.Button
-import kotlinx.android.synthetic.main.activity_main.*
+import android.os.Handler
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import ravid7.github.loco.Utils.DownloadHelper
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,21 +15,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         // Example of a call to a native method
-        sample_text.text = getString(R.string.ok, stringFromJNI(), intFromJNI());
-
+        val img : ImageView = findViewById(R.id.sample_img)
+        DownloadHelper(this,  img).execute("https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png");
     }
 
     /**
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
      */
-    external fun stringFromJNI(): String
-    external fun intFromJNI(): Int
 
-    companion object {
-        // Used to load the 'native-lib' library on application startup.
-        init {
-            System.loadLibrary("native-lib")
-        }
-    }
 }
